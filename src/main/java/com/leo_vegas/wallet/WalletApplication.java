@@ -31,12 +31,12 @@ public class WalletApplication {
             transactionRepository.deleteAllInBatch();
 
             // create a new book
-            Player player1 = new Player("FirstName 1", "LastName1");
+            Player player1 = new Player();
             Balance balance1 = new Balance();
             balance1.setPlayer(player1);
             player1.setBalance(balance1);
 
-            Player player2 = new Player("FirstName 2", "LastName2");
+            Player player2 = new Player();
             Balance balance2 = new Balance();
             double amount = 2.0;
             balance2.setAmount(amount);
