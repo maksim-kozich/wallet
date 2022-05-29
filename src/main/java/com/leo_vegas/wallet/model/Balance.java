@@ -1,6 +1,7 @@
 package com.leo_vegas.wallet.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "balances")
@@ -22,7 +21,7 @@ public class Balance {
     @JoinColumn(name = "player_id", nullable = false)
     private Player player;
 
-    @NotNull
+    @Column(nullable = false)
     private double amount;
 
     public Player getPlayer() {

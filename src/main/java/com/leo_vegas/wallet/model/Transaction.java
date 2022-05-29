@@ -29,6 +29,9 @@ public class Transaction {
     @Enumerated(EnumType.ORDINAL)
     private TransactionType type;
 
+    @Column(nullable = false)
+    private double amount;
+
     public String getTransactionId() {
         return transactionId;
     }
@@ -51,5 +54,13 @@ public class Transaction {
 
     public void setType(TransactionType type) {
         this.type = type;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 }

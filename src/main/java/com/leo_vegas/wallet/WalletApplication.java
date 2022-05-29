@@ -1,6 +1,5 @@
 package com.leo_vegas.wallet;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
@@ -39,13 +38,15 @@ public class WalletApplication {
 
             Player player2 = new Player("FirstName 2", "LastName2");
             Balance balance2 = new Balance();
-            balance2.setAmount(2.0);
+            double amount = 2.0;
+            balance2.setAmount(amount);
             balance2.setPlayer(player2);
             player2.setBalance(balance2);
             Transaction transaction = new Transaction();
             transaction.setType(TransactionType.CREDIT);
             transaction.setTransactionId("initial");
             transaction.setPlayer(player2);
+            transaction.setAmount(amount);
             player2.setTransactions(List.of(transaction));
 
             // save the book

@@ -2,11 +2,10 @@ package com.leo_vegas.wallet.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class TransactionDto {
+public class CreditDto {
     private String transactionId;
 
-    private TransactionTypeDto type;
-
+    // TODO: add validation for positive amount
     private double amount;
 
     @JsonProperty("transaction_id")
@@ -16,14 +15,6 @@ public class TransactionDto {
 
     public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
-    }
-
-    public TransactionTypeDto getType() {
-        return type;
-    }
-
-    public void setType(TransactionTypeDto type) {
-        this.type = type;
     }
 
     public double getAmount() {
