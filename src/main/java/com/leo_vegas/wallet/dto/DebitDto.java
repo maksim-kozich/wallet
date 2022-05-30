@@ -1,10 +1,15 @@
 package com.leo_vegas.wallet.dto;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class DebitDto {
+    @NotEmpty
     private String transactionId;
 
+    @Positive
     private double amount;
 
     @JsonProperty("transaction_id")

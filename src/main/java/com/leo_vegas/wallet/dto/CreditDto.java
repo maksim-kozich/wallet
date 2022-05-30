@@ -1,11 +1,15 @@
 package com.leo_vegas.wallet.dto;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreditDto {
+    @NotEmpty
     private String transactionId;
 
-    // TODO: add validation for positive amount
+    @Positive
     private double amount;
 
     @JsonProperty("transaction_id")

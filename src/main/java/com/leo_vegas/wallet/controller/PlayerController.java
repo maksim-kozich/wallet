@@ -2,6 +2,8 @@ package com.leo_vegas.wallet.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,12 +37,12 @@ public class PlayerController {
     }
 
     @PostMapping("/players/{id}/debit")
-    void debit(@PathVariable Long id, @RequestBody DebitDto debit) {
+    void debit(@PathVariable Long id, @Valid @RequestBody DebitDto debit) {
         this.playerService.debitAmount(id, debit.getTransactionId(), debit.getAmount());
     }
 
     @PostMapping("/players/{id}/credit")
-    void credit(@PathVariable Long id, @RequestBody CreditDto credit) {
+    void credit(@PathVariable Long id, @Valid @RequestBody CreditDto credit) {
         this.playerService.creditAmount(id, credit.getTransactionId(), credit.getAmount());
     }
 
