@@ -8,7 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.leo_vegas.wallet.exceptions.DuplicateTransactionIdException;
-import com.leo_vegas.wallet.exceptions.InsuffitientFundsException;
+import com.leo_vegas.wallet.exceptions.InsufficientFundsException;
 import com.leo_vegas.wallet.exceptions.PlayerNotFoundException;
 import com.leo_vegas.wallet.model.Balance;
 import com.leo_vegas.wallet.model.Player;
@@ -58,7 +58,7 @@ public class PLayerService implements IPLayerService {
             player.getTransactions().add(transaction);
             playerRepository.save(player);
         } else {
-            throw new InsuffitientFundsException();
+            throw new InsufficientFundsException();
         }
     }
 

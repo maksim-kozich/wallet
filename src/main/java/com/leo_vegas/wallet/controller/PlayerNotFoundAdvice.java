@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.leo_vegas.wallet.exceptions.DuplicateTransactionIdException;
-import com.leo_vegas.wallet.exceptions.InsuffitientFundsException;
+import com.leo_vegas.wallet.exceptions.InsufficientFundsException;
 import com.leo_vegas.wallet.exceptions.PlayerNotFoundException;
 
 @ControllerAdvice
@@ -20,9 +20,9 @@ public class PlayerNotFoundAdvice {
     }
 
     @ResponseBody
-    @ExceptionHandler(InsuffitientFundsException.class)
+    @ExceptionHandler(InsufficientFundsException.class)
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-    String insufficientFundsHandler(InsuffitientFundsException ex) {
+    String insufficientFundsHandler(InsufficientFundsException ex) {
         return ex.getMessage();
     }
 

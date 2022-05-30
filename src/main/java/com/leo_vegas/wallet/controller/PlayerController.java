@@ -30,25 +30,25 @@ public class PlayerController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping("/players/{id}/balance")
-    public BalanceDto balance(@PathVariable Long id) {
-        Balance balance = this.playerService.getPlayerBalance(id);
+    @GetMapping("/players/{playerId}/balance")
+    public BalanceDto balance(@PathVariable Long playerId) {
+        Balance balance = this.playerService.getPlayerBalance(playerId);
         return modelMapper.map(balance, BalanceDto.class);
     }
 
-    @PostMapping("/players/{id}/debit")
-    void debit(@PathVariable Long id, @Valid @RequestBody DebitDto debit) {
-        this.playerService.debitAmount(id, debit.getTransactionId(), debit.getAmount());
+    @PostMapping("/players/{playerId}/debit")
+    void debit(@PathVariable Long playerId, @Valid @RequestBody DebitDto debit) {
+        this.playerService.debitAmount(playerId, debit.getTransactionId(), debit.getAmount());
     }
 
-    @PostMapping("/players/{id}/credit")
-    void credit(@PathVariable Long id, @Valid @RequestBody CreditDto credit) {
-        this.playerService.creditAmount(id, credit.getTransactionId(), credit.getAmount());
+    @PostMapping("/players/{playerId}/credit")
+    void credit(@PathVariable Long playerId, @Valid @RequestBody CreditDto credit) {
+        this.playerService.creditAmount(playerId, credit.getTransactionId(), credit.getAmount());
     }
 
-    @GetMapping("/players/{id}/transactions")
-    public List<TransactionDto> transactions(@PathVariable Long id) {
-        List<Transaction> transactions = this.playerService.getPlayerTransactions(id);
+    @GetMapping("/players/{playerId}/transactions")
+    public List<TransactionDto> transactions(@PathVariable Long playerId) {
+        List<Transaction> transactions = this.playerService.getPlayerTransactions(playerId);
         return MapperUtil.convertList(transactions, this::convertToTransactionDto);
     }
 
