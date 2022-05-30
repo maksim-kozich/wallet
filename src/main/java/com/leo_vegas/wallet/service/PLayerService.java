@@ -42,7 +42,6 @@ public class PLayerService implements IPLayerService {
 
     @Transactional
     public void debitAmountInner(Long playerId, String transactionId, double amount) {
-        // TODO: add validation for positive amount
         Player player = playerRepository.findById(playerId)
             .orElseThrow(() -> new PlayerNotFoundException(playerId));
         Balance balance = player.getBalance();
@@ -74,7 +73,6 @@ public class PLayerService implements IPLayerService {
 
     @Transactional
     private void creditAmountInner(Long playerId, String transactionId, double amount) {
-        // TODO: add validation for positive amount
         Player player = playerRepository.findById(playerId)
             .orElseThrow(() -> new PlayerNotFoundException(playerId));
         Balance balance = player.getBalance();
