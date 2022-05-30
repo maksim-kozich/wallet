@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.leo_vegas.wallet.exceptions.DuplicateTransactionIdException;
 import com.leo_vegas.wallet.exceptions.InsuffitientFundsException;
 import com.leo_vegas.wallet.exceptions.PlayerNotFoundException;
 import com.leo_vegas.wallet.model.Balance;
@@ -30,8 +32,16 @@ public class PLayerService implements IPLayerService {
     }
 
     @Override
-    @Transactional
     public void debitAmount(Long playerId, String transactionId, double amount) {
+        try {
+            this.debitAmountInner(playerId, transactionId, amount);
+        } catch (DataIntegrityViolationException e) {
+            throw new DuplicateTransactionIdException(transactionId);
+        }
+    }
+
+    @Transactional
+    public void debitAmountInner(Long playerId, String transactionId, double amount) {
         // TODO: add validation for positive amount
         Player player = playerRepository.findById(playerId)
             .orElseThrow(() -> new PlayerNotFoundException(playerId));
@@ -54,8 +64,16 @@ public class PLayerService implements IPLayerService {
     }
 
     @Override
-    @Transactional
     public void creditAmount(Long playerId, String transactionId, double amount) {
+        try {
+            this.creditAmountInner(playerId, transactionId, amount);
+        } catch (DataIntegrityViolationException e) {
+            throw new DuplicateTransactionIdException(transactionId);
+        }
+    }
+
+    @Transactional
+    private void creditAmountInner(Long playerId, String transactionId, double amount) {
         // TODO: add validation for positive amount
         Player player = playerRepository.findById(playerId)
             .orElseThrow(() -> new PlayerNotFoundException(playerId));
